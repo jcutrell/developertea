@@ -1,5 +1,5 @@
 import 'tailwindcss/tailwind.css';
-import tw, {styled} from 'twin.macro';
+import tw, {styled, css} from 'twin.macro';
 import {useContext} from 'react';
 import Head from 'next/head';
 
@@ -26,9 +26,45 @@ const Results = connectStateResults(({searchState, searchResults, children}) =>
   ),
 );
 
+const ResultContainer = styled.div`
+  position: absolute;
+  background: #FFF;
+  z-index: 500;
+  width: 60%;
+  left: 20%;
+  ${tw`rounded-lg px-4 py-6 shadow-xl`}
+`
+const iconStyles = css`
+  .ais-SearchBox
+    .ais-SearchBox-input {
+      width: 100%;
+      ${tw`rounded-md`}
+    }
+  
+  .ais-SearchBox-form {
+    position: relative;
+  }
+  .ais-SearchBox-submit {
+    display: none;
+  }
+  .ais-SearchBox-reset {
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    z-index: 500;
+  }
+`
+
 function SiteLayout({children}) {
   return (
     <div>
+      <Head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous" />
+        <style>{iconStyles}</style>
+      </Head>
       <nav tw={'py-6 px-4 md:px-0'}>
         <div tw="container mx-auto grid md:grid-cols-12">
           <div tw={'text-left col-span-4'}>
@@ -102,15 +138,17 @@ function SiteLayout({children}) {
           <div tw={'text-center col-span-4'}>
             <InstantSearch indexName="Episodes" searchClient={searchClient}>
               <SearchBox />
-              <Results>
-                <Hits
-                  hitComponent={({hit}) => (
-                    <div>
-                      <a href={`/episodes/${hit.id}`}>{hit.title}</a>
-                    </div>
-                  )}
-                />
-              </Results>
+                <Results>
+                  <ResultContainer>
+                    <Hits
+                      hitComponent={({hit}) => (
+                        <div>
+                          <a tw="text-left px-3 py-2 hover:bg-gray-100 block" href={`/episodes/${hit.id}`}>{hit.title}</a>
+                        </div>
+                      )}
+                    />
+                  </ResultContainer>
+                </Results>
             </InstantSearch>
           </div>
           <div tw={'text-right col-span-4'}>
