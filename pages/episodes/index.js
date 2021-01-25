@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import {useRouter} from 'next/router';
-import tw, {styled} from 'twin.macro';
+import tw, {styled, css} from 'twin.macro';
 import EpisodeCard from '../../components/EpisodeCard';
 import Link from 'next/link';
 import colors from 'tailwindcss/colors';
+import Mailchimp from 'react-mailchimp-form'
 
 const PAGESIZE = 20;
 
@@ -26,6 +27,19 @@ const PLink = styled.a`
   }
 `;
 
+const chimpForm = css`
+  .mailchimp-form input {
+      ${tw`px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none  w-full`}
+  }
+  .mailchimp-form button {
+    ${tw`mt-3 bg-brandBlue-600 text-white px-3 py-2 rounded-md text-sm`}
+  }
+
+  .mailchimp-form button:hover {
+    ${tw`bg-brandBlue-800`}
+  }
+`
+
 export default function EpisodeIndex({episodes}) {
   const router = useRouter();
   const {id, p = 1} = router.query;
@@ -36,6 +50,7 @@ export default function EpisodeIndex({episodes}) {
       <Head>
         . <title>Developer Tea :: All Episodes</title>
         <link rel="icon" href="/favicon.ico" />
+        <style>{chimpForm}</style>
       </Head>
       <main tw={'md:grid grid-cols-12 container mx-auto'}>
         <aside
@@ -63,21 +78,22 @@ export default function EpisodeIndex({episodes}) {
               ))}
             </p>
           </Footer>
-          <form action="" tw={'pt-4'}>
-            <h4 tw={'font-bold mb-2 text-xl'}>Get Updates</h4>
-            <input
-              type="email"
-              placeholder="Email Address"
-              tw={'block mb-4 rounded-md'}
-            />
-            <input
-              type="submit"
-              value="Subscribe"
-              tw={
-                'block font-bold text-xs leading-4 tracking-wider uppercase bg-blue-600 text-white px-3 py-2 rounded-md hover:cursor-pointer hover:bg-blue-900 transition'
+          <h2 tw="mb-4 text-lg">Get more from Developer Tea.</h2>
+          <p tw="mb-2">Sign up to receive periodic news and content beyond these episodes.</p>
+          <Mailchimp
+            action='https://<YOUR-USER>.us16.list-manage.com/subscribe/post?u=XXXXXXXXXXXXX&amp;id=XXXXXX'
+            fields={[
+              {
+                name: 'EMAIL',
+                placeholder: 'Your best email',
+                type: 'email',
+                required: true
               }
-            />
-          </form>
+            ]}
+
+            className="mailchimp-form"
+
+          />
         </aside>
 
         <section tw={'md:col-span-6 md:col-start-6'}>
