@@ -81,7 +81,7 @@ export default function EpisodeIndex({episodes}) {
           <h2 tw="mb-4 text-lg">Get more from Developer Tea.</h2>
           <p tw="mb-2">Sign up to receive periodic news and content beyond these episodes.</p>
           <Mailchimp
-            action='https://<YOUR-USER>.us16.list-manage.com/subscribe/post?u=XXXXXXXXXXXXX&amp;id=XXXXXX'
+            action='https://hackingtheimpossible.us7.list-manage.com/subscribe/post?u=fea32c85d97c14702c688f06e&amp;id=e9dda73d5e'
             fields={[
               {
                 name: 'EMAIL',
