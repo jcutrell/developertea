@@ -9,3 +9,13 @@
 html {
   color: #394251;
 }
+
+ul {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+}
+
+ul li {
+  list-style-type: disc;
+}
