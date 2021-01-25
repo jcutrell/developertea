@@ -151,7 +151,7 @@ function SiteLayout({children}) {
                 </Results>
             </InstantSearch>
           </div>
-          <div tw={'text-right col-span-4'}>
+          <div tw={'text-right col-span-4 leading-10'}>
             <a tw="px-2 py-1" href="https://bit.ly/DevTeaOniTunes">
               iTunes
             </a>

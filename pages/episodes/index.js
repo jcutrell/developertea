@@ -94,6 +94,7 @@ export default function EpisodeIndex({episodes}) {
             className="mailchimp-form"
 
           />
+
         </aside>
 
         <section tw={'md:col-span-6 md:col-start-6'}>
