@@ -3,7 +3,7 @@ module.exports = {
   async redirects() {
     return [
       {
-        source '/square',
+        source: '/square',
         destination: 'https://squareup.com/us/en/campaign/terminal-api?device=c&gclid=EAIaIQobChMIvevaxt-o7gIVTR-tBh2A2wnCEAAYASAAEgIcLfD_BwE&gclsrc=aw.ds&kw=square+terminal+api&kwid=p57379141245&matchtype=e&pcrid=466887040718&pdv=c&pkw=square+terminal+api&pmt=e&pub=GOOGLE',
         permanent: true
       }
