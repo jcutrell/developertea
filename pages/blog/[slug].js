@@ -4,7 +4,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import tw, {styled} from 'twin.macro'
 import Link from 'next/link'
-import { getPostBySlug, getAllPosts, markdownToHtml } from 'api/blog';
+import { getPostBySlug, getAllPosts, markdownToHtml } from '../api/blog';
 
 import Page from '../../components/Page'
 
