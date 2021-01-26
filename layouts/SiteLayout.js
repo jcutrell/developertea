@@ -67,7 +67,7 @@ function SiteLayout({children}) {
       </Head>
       <nav tw={'py-6 px-4 md:px-0'}>
         <div tw="container mx-auto grid md:grid-cols-12">
-          <div tw={'text-left col-span-4'}>
+          <div tw={'text-left col-span-3'}>
             <a
               tw="py-1"
               href="/"
@@ -135,7 +135,7 @@ function SiteLayout({children}) {
             </a>
           </div>
 
-          <div tw={'text-center col-span-4'}>
+          <div tw={'text-center col-span-5 pt-3 px-4'}>
             <InstantSearch indexName="Episodes" searchClient={searchClient}>
               <SearchBox />
                 <Results>
@@ -151,9 +151,12 @@ function SiteLayout({children}) {
                 </Results>
             </InstantSearch>
           </div>
-          <div tw={'text-right col-span-4 leading-10'}>
+          <div tw={'text-right col-span-4 leading-10 text-sm pt-5'}>
             <a tw="px-2 py-1" href="https://bit.ly/DevTeaOniTunes">
               iTunes
+            </a>
+            <a tw="px-2 py-1" href="/blog">
+              Blog
             </a>
             <a tw="px-2 py-1" href="/">
               Episodes
