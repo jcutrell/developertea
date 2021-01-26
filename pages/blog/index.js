@@ -5,7 +5,7 @@ import BlogPostCard from '../../components/BlogPostCard';
 import Link from 'next/link';
 import colors from 'tailwindcss/colors';
 import Mailchimp from 'react-mailchimp-form'
-import { getAllPosts } from '../../lib/blog_api';
+import { getAllPosts } from 'api/blog';
 
 const PAGESIZE = 20;
 
