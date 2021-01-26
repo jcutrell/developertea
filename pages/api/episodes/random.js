@@ -15,8 +15,17 @@ export default async function(req, res){
   })
 
   const episodes = await pickres.json();
-  const episode = episodes.collection[0];
 
-  res.statusCode = 200
-  res.json({ episode })
+  if (!episodes){
+
+    res.statusCode = 500
+    res.json({ error: "Couldn't get an episode." })
+
+  } else {
+
+    const episode = episodes.collection[0];
+
+    res.statusCode = 200
+    res.json({ episode })
+  }
 }
