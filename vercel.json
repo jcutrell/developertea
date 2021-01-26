@@ -1,0 +1,7 @@
+{
+	"functions": {
+		"lib/blog_api.js": {
+			"includeFiles": "blog/**"
+		}
+	}
+}
