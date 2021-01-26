@@ -30,9 +30,7 @@ export function getPostBySlug(slug, fields = []) {
 		}
 
 		if (field === 'date') {
-      console.log(data[field]);
 			items[field] = DateTime.fromJSDate(data[field]).toString()
-      console.log(items[field]);
 		} else {
 
       if (data[field]) {
