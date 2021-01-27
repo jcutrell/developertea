@@ -101,7 +101,7 @@ export default function PostIndex({posts}) {
 }
 
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const posts = getAllPosts([
      'title',
      'date',
