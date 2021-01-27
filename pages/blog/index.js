@@ -108,6 +108,7 @@ export async function getStaticProps(context) {
      'slug',
      'author',
      'excerpt',
+     'content',
    ])
 
    return {
