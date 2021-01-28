@@ -1,46 +1,46 @@
-import 'tailwindcss/tailwind.css';
-import tw, {styled, css} from 'twin.macro';
-import {useContext} from 'react';
-import Head from 'next/head';
+import "tailwindcss/tailwind.css";
+import tw, { styled, css } from "twin.macro";
+import { useContext } from "react";
+import Head from "next/head";
 
-import {store} from '../store.js';
+import { store } from "../store.js";
 
-import algoliasearch from 'algoliasearch/lite';
+import algoliasearch from "algoliasearch/lite";
 import {
   connectStateResults,
   InstantSearch,
   SearchBox,
   Hits,
-} from 'react-instantsearch-dom';
+} from "react-instantsearch-dom";
 
 const searchClient = algoliasearch(
-  'I0WT5HWUGY',
-  'e67a4744e38e3902ff6a4cd32bb89863',
+  "I0WT5HWUGY",
+  "e67a4744e38e3902ff6a4cd32bb89863"
 );
 
-const Results = connectStateResults(({searchState, searchResults, children}) =>
-  !searchState.query ? null : searchResults && searchResults.nbHits !== 0 ? (
-    children
-  ) : (
-    <div>No results have been found for {searchState.query}.</div>
-  ),
+const Results = connectStateResults(
+  ({ searchState, searchResults, children }) =>
+    !searchState.query ? null : searchResults && searchResults.nbHits !== 0 ? (
+      children
+    ) : (
+      <div>No results have been found for {searchState.query}.</div>
+    )
 );
 
 const ResultContainer = styled.div`
   position: absolute;
-  background: #FFF;
+  background: #fff;
   z-index: 500;
   width: 60%;
   left: 20%;
   ${tw`rounded-lg px-4 py-6 shadow-xl`}
-`
+`;
 const iconStyles = css`
-  .ais-SearchBox
-    .ais-SearchBox-input {
-      width: 100%;
-      ${tw`rounded-md`}
-    }
-  
+  .ais-SearchBox .ais-SearchBox-input {
+    width: 100%;
+    ${tw`rounded-md`}
+  }
+
   .ais-SearchBox-form {
     position: relative;
   }
@@ -56,35 +56,42 @@ const iconStyles = css`
     height: 8px;
     z-index: 500;
   }
-`
+`;
 
-function SiteLayout({children}) {
+function SiteLayout({ children }) {
   return (
     <div>
       <Head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+          integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
+          crossorigin="anonymous"
+        />
         <style>{iconStyles}</style>
       </Head>
-      <nav tw={'py-6 px-4 md:px-0'}>
+      <nav tw={"py-6 px-4 md:px-0"}>
         <div tw="container mx-auto grid md:grid-cols-12">
-          <div tw={'text-left col-span-3'}>
+          <div tw={"text-left col-span-3"}>
             <a
               tw="py-1"
               href="/"
-              style={{lineHeight: '60px'}}
-              tw={'text-xl font-semibold'}>
+              style={{ lineHeight: "60px" }}
+              tw={"text-xl font-semibold"}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={56}
                 height={50}
                 viewBox="0 0 309.55 276.97"
                 overflow="visible"
-                tw={'mr-3'}
+                tw={"mr-3"}
                 style={{
-                  display: 'inline',
-                  float: 'left',
-                }}>
-                <style>{'.prefix__st1{fill:#002f8e}'}</style>
+                  display: "inline",
+                  float: "left",
+                }}
+              >
+                <style>{".prefix__st1{fill:#002f8e}"}</style>
                 <linearGradient
                   id="prefix__SVGID_1_"
                   gradientUnits="userSpaceOnUse"
@@ -92,7 +99,8 @@ function SiteLayout({children}) {
                   y1={-4.201}
                   x2={42.019}
                   y2={215.598}
-                  gradientTransform="rotate(-7.946 623.144 -1103.3)">
+                  gradientTransform="rotate(-7.946 623.144 -1103.3)"
+                >
                   <stop offset={0} stopColor="#ff8f40" />
                   <stop offset={1} stopColor="#ff8e82" />
                 </linearGradient>
@@ -122,7 +130,8 @@ function SiteLayout({children}) {
                   y1={83.595}
                   x2={41.25}
                   y2={215.598}
-                  gradientTransform="rotate(-7.946 623.144 -1103.3)">
+                  gradientTransform="rotate(-7.946 623.144 -1103.3)"
+                >
                   <stop offset={0.031} stopColor="#ff4800" />
                   <stop offset={1} stopColor="#c70064" />
                 </linearGradient>
@@ -135,23 +144,28 @@ function SiteLayout({children}) {
             </a>
           </div>
 
-          <div tw={'text-center col-span-5 pt-3 px-4'}>
+          <div tw={"text-center col-span-5 pt-3 px-4"}>
             <InstantSearch indexName="Episodes" searchClient={searchClient}>
               <SearchBox />
-                <Results>
-                  <ResultContainer>
-                    <Hits
-                      hitComponent={({hit}) => (
-                        <div>
-                          <a tw="text-left px-3 py-2 hover:bg-gray-100 block" href={`/episodes/${hit.id}`}>{hit.title}</a>
-                        </div>
-                      )}
-                    />
-                  </ResultContainer>
-                </Results>
+              <Results>
+                <ResultContainer>
+                  <Hits
+                    hitComponent={({ hit }) => (
+                      <div>
+                        <a
+                          tw="text-left px-3 py-2 hover:bg-gray-100 block"
+                          href={`/episodes/${hit.id}`}
+                        >
+                          {hit.title}
+                        </a>
+                      </div>
+                    )}
+                  />
+                </ResultContainer>
+              </Results>
             </InstantSearch>
           </div>
-          <div tw={'text-right col-span-4 leading-10 text-sm pt-5'}>
+          <div tw={"text-right col-span-4 leading-10 text-sm pt-5"}>
             <a tw="px-2 py-1" href="https://bit.ly/DevTeaOniTunes">
               iTunes
             </a>
@@ -170,23 +184,20 @@ function SiteLayout({children}) {
           </div>
         </div>
       </nav>
-      <main tw={'px-4 md:px-0'}>{children}</main>
+      <main tw={"px-4 md:px-0"}>{children}</main>
       <div className="ghost-footer"></div>
       <aside className="footer-cta pt-4">
         <div className="md:grid-cols-12">
           <div className="md:col-span-4 md:col-start-4 text-center pb-4">
             <h3>
               Developer Tea was a part of <a href="http://spec.fm">Spec</a> and
-              is hosted by{' '}
+              is hosted by{" "}
               <a href="https://twitter.com/jcutrell">Jonathan Cutrell</a>,
               director of technology at <a href="https://pbs.org">PBS</a>.
             </h3>
           </div>
         </div>
       </aside>
-      <footer className={['pt-2 pb-2', 'pb-8'].join(' ')}>
-        <div className="container"></div>
-      </footer>
     </div>
   );
 }
