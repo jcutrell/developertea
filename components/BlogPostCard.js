@@ -2,19 +2,20 @@ import {useContext} from 'react';
 import tw, {styled} from 'twin.macro';
 import {DateTime} from 'luxon';
 import Link from 'next/link';
+import striptags from 'striptags';
 
 import {store} from '../store.js';
 
 function stripHtml(html)
 {
-	 let tmp = document.createElement("DIV");
-	 tmp.innerHTML = html;
-	 return tmp.textContent || tmp.innerText || "";
+  return striptags(html);
 }
 
-const Excerpt = ({ post }) => (
-  <div dangerouslySetInnerHTML={{ __html: stripHtml(post.content).split(". ").slice(0, 1).join(". ") }} />
-)
+const Excerpt = ({ post }) => {
+  const html = `${stripHtml(post.content).split(/\.\s+/).slice(0, 1)}.`
+  console.log(html);
+  return (<div dangerouslySetInnerHTML={{ __html: html }} />)
+}
 
 export default function BlogPostCard({post, ...rest}) {
   const globalState = useContext(store);

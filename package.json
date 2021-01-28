@@ -25,6 +25,7 @@
     "react-mailchimp-form": "^1.0.2",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
+    "striptags": "^3.1.1",
     "styled-components": "^5.2.1",
     "tailwindcss": "^2.0.2",
     "twin.macro": "^2.0.7"

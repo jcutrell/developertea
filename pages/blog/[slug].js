@@ -28,10 +28,6 @@ const BlogPostContainer = styled.section`
   }
 `
 
-const components = {
-    h2: ({ children }) => (<h2 class="text-2xl font-bold mt-6 mb-4">{children}</h2>)
-}
-
 export default function BlogPost({post}) {
   const router = useRouter();
   const {slug} = router.query;
