@@ -36,19 +36,23 @@ export default function EpisodeIndex({ episode }) {
         <title>Developer Tea :: {episode.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Link href="/episodes">&laquo; All Episodes</Link>
-      <h2 tw={"text-4xl font-semibold py-6"}>{episode.title}</h2>
-      <p>Published {pubDate(episode)}</p>
-      <iframe
-        height="200px"
-        width="100%"
-        frameBorder="no"
-        scrolling="no"
-        seamless
-        tw={"pt-2 pb-6"}
-        src={`https://player.simplecast.com/${id}?dark=false`}
-      ></iframe>
-      {content}
+      <div tw="grid grid-cols-8">
+        <section tw="col-span-6 col-start-2">
+          <Link href="/episodes">&laquo; All Episodes</Link>
+          <h2 tw={"text-4xl font-semibold py-6"}>{episode.title}</h2>
+          <p>Published {pubDate(episode)}</p>
+          <iframe
+            height="200px"
+            width="100%"
+            frameBorder="no"
+            scrolling="no"
+            seamless
+            tw={"pt-2 pb-2 my-6"}
+            src={`https://player.simplecast.com/${id}?dark=false`}
+          ></iframe>
+          {content}
+        </section>
+      </div>
     </Page>
   );
 }
