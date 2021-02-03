@@ -10,6 +10,7 @@ const PageContainer = styled.section`
 `;
 
 const duration = episode => `~${Math.round(episode.duration / 60)}m`;
+const pubDate = episode => `${DateTime.fromISO(episode.published_at).toLocaleString()}`;
 
 export default function EpisodeCard({episode, ...rest}) {
   const globalState = useContext(store);
@@ -22,7 +23,7 @@ export default function EpisodeCard({episode, ...rest}) {
           <span tw={'mb-4 font-bold'}>{episode.title}</span>
           <p tw={'my-2 text-sm text-gray-500'}>{episode.description}</p>
           <span tw={'text-sm text-gray-400'}>
-            Published: {DateTime.fromISO(episode.published_at).toLocaleString()}
+            Published: {}
             <br />
             Length: {duration(episode)}
           </span>

@@ -1,11 +1,12 @@
-import Head from 'next/head'
-import {useRouter} from 'next/router'
-import renderToString from 'next-mdx-remote/render-to-string'
-import hydrate from 'next-mdx-remote/hydrate'
-import tw, {styled} from 'twin.macro'
-import Link from 'next/link'
+import Head from "next/head";
+import { useRouter } from "next/router";
+import renderToString from "next-mdx-remote/render-to-string";
+import hydrate from "next-mdx-remote/hydrate";
+import tw, { styled } from "twin.macro";
+import Link from "next/link";
+import { DateTime } from 'luxon';
 
-import Page from '../../components/Page'
+import Page from "../../components/Page";
 
 const PAGESIZE = 30;
 
@@ -15,14 +16,20 @@ const Footer = styled.footer`
 `;
 
 const components = {
-    h2: ({ children }) => (<h2 class="text-2xl font-bold mt-6 mb-4">{children}</h2>)
-}
+  h2: ({ children }) => (
+    <h2 class="text-2xl font-bold mt-6 mb-4">{children}</h2>
+  ),
+};
 
-export default function EpisodeIndex({episode}) {
+
+const pubDate = (episode) =>
+  `${DateTime.fromISO(episode.published_at).toLocaleString()}`;
+
+export default function EpisodeIndex({ episode }) {
   const router = useRouter();
-  const {id} = router.query;
+  const { id } = router.query;
   const { description_html } = episode;
-  const content = hydrate(description_html)
+  const content = hydrate(description_html, { components });
   return (
     <Page>
       <Head>
@@ -30,16 +37,18 @@ export default function EpisodeIndex({episode}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Link href="/episodes">&laquo; All Episodes</Link>
-      <h2 tw={'text-4xl font-semibold py-6'}>{episode.title}</h2>
+      <h2 tw={"text-4xl font-semibold py-6"}>{episode.title}</h2>
+      <p>Published {pubDate(episode)}</p>
       <iframe
         height="200px"
         width="100%"
         frameBorder="no"
         scrolling="no"
         seamless
-        tw={'pt-2 pb-6'}
-        src={`https://player.simplecast.com/${id}?dark=false`}></iframe>
-        {content} 
+        tw={"pt-2 pb-6"}
+        src={`https://player.simplecast.com/${id}?dark=false`}
+      ></iframe>
+      {content}
     </Page>
   );
 }
@@ -72,11 +81,11 @@ export async function getStaticPaths() {
       headers: {
         authorization: `Bearer ${process.env.SIMPLECAST_API_KEY}`,
       },
-    },
+    }
   );
   const episodes = await res.json();
   return {
-    paths: episodes.collection.map(ep => `/episodes/${ep.id}`),
+    paths: episodes.collection.map((ep) => `/episodes/${ep.id}`),
     fallback: false,
   };
 }
