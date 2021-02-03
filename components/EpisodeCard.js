@@ -23,7 +23,7 @@ export default function EpisodeCard({episode, ...rest}) {
           <span tw={'mb-4 font-bold'}>{episode.title}</span>
           <p tw={'my-2 text-sm text-gray-500'}>{episode.description}</p>
           <span tw={'text-sm text-gray-400'}>
-            Published: {}
+            Published: {pubDate(episode)}
             <br />
             Length: {duration(episode)}
           </span>
