@@ -54,7 +54,7 @@ export default function EpisodeIndex({episodes}) {
       </Head>
       <main tw={'md:grid grid-cols-12 container mx-auto'}>
         <aside
-          tw={'md:col-span-4 md:col-start-1 md:h-screen md:sticky top-0 pt-6'}>
+          tw={'md:col-span-3 md:col-start-2 md:h-screen md:sticky top-0 pt-6'}>
           <h3 tw={'text-3xl font-bold mb-4'}>All Episodes</h3>
           <p>
             I started Developer Tea in 2015 to help engineers find clarity,
@@ -97,7 +97,7 @@ export default function EpisodeIndex({episodes}) {
 
         </aside>
 
-        <section tw={'md:col-span-6 md:col-start-6'}>
+        <section tw={'md:col-span-5 md:col-start-6'}>
           {episodes.collection.map(ep => (
             <EpisodeCard
               episode={ep}
