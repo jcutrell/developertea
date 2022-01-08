@@ -4,7 +4,7 @@ module.exports = {
     return [
       {
         source: '/square',
-        destination: 'https://squareup.com/t/f_online/d_podcast/p_devtea/c_branding/l_us/dt_alldevice/pr_ecommerce_api/?route=/us/en/campaign/terminal-api',
+        destination: 'https://squareup.com/t/f_online/d_podcast/p_developertea/l_us/dt_alldevice/pr_developers/?route=us/en/developers',
         permanent: true
       }
     ]
