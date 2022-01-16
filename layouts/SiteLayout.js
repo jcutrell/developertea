@@ -70,14 +70,14 @@ function SiteLayout({ children }) {
         />
         <style>{iconStyles}</style>
       </Head>
-      <nav tw={"py-6 px-4 md:px-0"}>
+      <nav tw={"py-16 pt-10 px-4"}>
         <div tw="container mx-auto grid md:grid-cols-12">
           <div tw={"text-left col-span-3"}>
             <a
               tw="py-1"
               href="/"
               style={{ lineHeight: "60px" }}
-              tw={"text-xl font-semibold"}
+              tw={"text-xl font-semibold whitespace-nowrap"}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
