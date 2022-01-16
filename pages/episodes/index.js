@@ -102,7 +102,7 @@ export default function EpisodeIndex({episodes}) {
             <EpisodeCard
               episode={ep}
               tw={
-                'shadow-md m-3 mb-5 text-gray-600 transition hover:text-gray-900 hover:shadow-lg align-middle rounded-lg'
+                'shadow-lg m-3 mb-12 text-gray-600 transition hover:text-gray-900 hover:shadow-xl align-middle rounded-lg'
               }
             />
           ))}

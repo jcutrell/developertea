@@ -60,7 +60,7 @@ const iconStyles = css`
 
 function SiteLayout({ children }) {
   return (
-    <div>
+    <div tw="bg-gray-50">
       <Head>
         <link
           rel="stylesheet"
