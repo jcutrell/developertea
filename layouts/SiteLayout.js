@@ -36,6 +36,11 @@ const ResultContainer = styled.div`
   ${tw`rounded-lg px-4 py-6 shadow-xl`}
 `;
 const iconStyles = css`
+
+  html {
+    font-size: 14px;
+  }
+
   .ais-SearchBox .ais-SearchBox-input {
     width: 100%;
     ${tw`rounded-md`}

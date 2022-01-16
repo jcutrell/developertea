@@ -16,7 +16,7 @@ export default function EpisodeCard({episode, ...rest}) {
   const globalState = useContext(store);
   const {dispatch, state} = globalState;
   return (
-    <div {...rest} tw={'relative text-left items-center'}>
+    <div {...rest} tw={'relative text-left items-center bg-white'}>
       <Link href={`/episodes/${episode.id}`} passHref>
         <a
           tw={'h-full w-full block p-8 flex flex-col justify-center text-left'}>
