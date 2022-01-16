@@ -193,7 +193,7 @@ function SiteLayout({ children }) {
               Developer Tea was a part of <a href="http://spec.fm">Spec</a> and
               is hosted by{" "}
               <a href="https://twitter.com/jcutrell">Jonathan Cutrell</a>,
-              director of technology at <a href="https://pbs.org">PBS</a>.
+              engineering manager at <a href="https://guildeducation.com">Guild Education</a>.
             </h3>
           </div>
         </div>
