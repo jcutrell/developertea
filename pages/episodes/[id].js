@@ -10,15 +10,12 @@ import Page from "../../components/Page";
 
 const PAGESIZE = 30;
 
-const Footer = styled.footer`
-  margin: 2rem 0 auto;
-  display: flex;
-`;
+const H2special = (props) => <h2 tw="text-2xl font-bold mt-6 mb-4" {...props} />
+
 const components = {
-  h2: ({ children }) => (
-    <h2 class="text-2xl font-bold mt-6 mb-4">{children}</h2>
-  ),
+  H2special
 };
+
 
 
 const pubDate = (episode) =>
@@ -48,7 +45,9 @@ export default function EpisodeIndex({ episode }) {
             tw={"pt-2 pb-2 my-6"}
             src={`https://player.simplecast.com/${id}?dark=false`}
           ></iframe>
+          <div>
             <MDXRemote {...mdxSource} components={components} />
+          </div>
         </section>
       </div>
     </Page>
@@ -73,7 +72,12 @@ export async function getStaticProps(context) {
     },
   });
   const episode = await res.json();
-  episode.mdxSource = await serialize(episode.long_description || episode.description || "<div/>", { parseFrontmatter: false });
+
+  //const regex = /(<([^>]+)>)/ig;
+  const result = episode.long_description.replace(/h2/gi, "H2special");
+
+
+  episode.mdxSource = await serialize(result, { parseFrontmatter: false });
 
   return {
     props: {

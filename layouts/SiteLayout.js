@@ -27,16 +27,7 @@ const Results = connectStateResults(
     )
 );
 
-const ResultContainer = styled.div`
-  position: absolute;
-  background: #fff;
-  z-index: 500;
-  width: 60%;
-  left: 20%;
-  ${tw`rounded-lg px-4 py-6 shadow-xl`}
-`;
 const iconStyles = css`
-
   html {
     font-size: 14px;
   }
@@ -63,16 +54,19 @@ const iconStyles = css`
   }
 `;
 
+const ResultContainer = styled.div`
+  position: absolute;
+  background: #fff;
+  z-index: 500;
+  width: 60%;
+  left: 20%;
+  ${tw`rounded-lg px-4 py-6 shadow-xl`}
+`;
+
 function SiteLayout({ children }) {
   return (
     <div tw="bg-gray-50">
       <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
-          integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
-          crossorigin="anonymous"
-        />
         <style>{iconStyles}</style>
       </Head>
       <nav tw={"py-16 pt-10 px-4"}>
@@ -191,15 +185,13 @@ function SiteLayout({ children }) {
       </nav>
       <main tw={"px-4 md:px-0"}>{children}</main>
       <div className="ghost-footer"></div>
-      <aside className="footer-cta pt-4">
-        <div className="md:grid-cols-12">
-          <div className="md:col-span-4 md:col-start-4 text-center pb-4">
-            <h3>
+      <aside className="footer-cta" tw="pt-4">
+        <div tw="md:grid-cols-12">
+          <div tw="md:col-span-4 md:col-start-4 text-center pb-4">
               Developer Tea was a part of <a href="http://spec.fm">Spec</a> and
               is hosted by{" "}
               <a href="https://twitter.com/jcutrell">Jonathan Cutrell</a>,
               engineering manager at <a href="https://guildeducation.com">Guild Education</a>.
-            </h3>
           </div>
         </div>
       </aside>

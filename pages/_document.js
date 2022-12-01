@@ -1,6 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
+
 class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const initialProps = await Document.getInitialProps(ctx)
@@ -15,7 +16,12 @@ class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-58454128-1"
           />
-  
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+            integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
+            crossorigin="anonymous"
+          />
         </Head>
 				<body>
 					<Main />
