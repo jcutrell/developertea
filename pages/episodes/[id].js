@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import renderToString from "next-mdx-remote/render-to-string";
-import hydrate from "next-mdx-remote/hydrate";
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 import tw, { styled } from "twin.macro";
 import Link from "next/link";
 import { DateTime } from 'luxon';
@@ -14,7 +14,6 @@ const Footer = styled.footer`
   margin: 2rem 0 auto;
   display: flex;
 `;
-
 const components = {
   h2: ({ children }) => (
     <h2 class="text-2xl font-bold mt-6 mb-4">{children}</h2>
@@ -28,8 +27,7 @@ const pubDate = (episode) =>
 export default function EpisodeIndex({ episode }) {
   const router = useRouter();
   const { id } = router.query;
-  const { description_html } = episode;
-  const content = hydrate(description_html, { components });
+  const { mdxSource } = episode;
   return (
     <Page>
       <Head>
@@ -50,16 +48,24 @@ export default function EpisodeIndex({ episode }) {
             tw={"pt-2 pb-2 my-6"}
             src={`https://player.simplecast.com/${id}?dark=false`}
           ></iframe>
-          {content}
+            <MDXRemote {...mdxSource} components={components} />
         </section>
       </div>
     </Page>
   );
 }
 
+function avoidRateLimit(delay = 650){
+  if (!process.env.IS_BUILD){
+    return
+  }
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay)
+  })
+}
+
 export async function getStaticProps(context) {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
+  await avoidRateLimit()
   const episode_id = context.params.id;
   const res = await fetch(`https://api.simplecast.com/episodes/${episode_id}`, {
     headers: {
@@ -67,10 +73,8 @@ export async function getStaticProps(context) {
     },
   });
   const episode = await res.json();
-  episode.description_html = await renderToString(episode.long_description);
+  episode.mdxSource = await serialize(episode.long_description || episode.description || "<div/>", { parseFrontmatter: false });
 
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
     props: {
       episode,
@@ -80,7 +84,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const res = await fetch(
-    `https://api.simplecast.com/podcasts/${process.env.PODCAST_ID}/episodes?limit=1000&offset=0`,
+    `https://api.simplecast.com/podcasts/${process.env.PODCAST_ID}/episodes?limit=1500&offset=0`,
     {
       headers: {
         authorization: `Bearer ${process.env.SIMPLECAST_API_KEY}`,

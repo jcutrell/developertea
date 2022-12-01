@@ -17,17 +17,14 @@ export default function EpisodeCard({episode, ...rest}) {
   const {dispatch, state} = globalState;
   return (
     <div {...rest} tw={'relative text-left items-center bg-white'}>
-      <Link href={`/episodes/${episode.id}`} passHref>
-        <a
-          tw={'h-full w-full block p-8 flex flex-col justify-center text-left'}>
-          <span tw={'mb-4 font-bold'}>{episode.title}</span>
-          <p tw={'my-2 text-sm text-gray-500'}>{episode.description}</p>
-          <span tw={'text-sm text-gray-400'}>
-            Published: {pubDate(episode)}
-            <br />
-            Length: {duration(episode)}
-          </span>
-        </a>
+      <Link href={`/episodes/${episode.id}`} tw={'h-full w-full block p-8 flex flex-col justify-center text-left'}>
+        <span tw={'mb-4 font-bold'}>{episode.title}</span>
+        <p tw={'my-2 text-sm text-gray-500'}>{episode.description}</p>
+        <span tw={'text-sm text-gray-400'}>
+          Published: {pubDate(episode)}
+          <br />
+          Length: {duration(episode)}
+        </span>
       </Link>
       <button
         onClick={e => {

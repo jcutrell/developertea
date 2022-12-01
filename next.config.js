@@ -11,11 +11,18 @@ module.exports = {
   },
   webpack: (config, {isServer}) => {
     // Fixes npm packages that depend on `fs` module
-    if (!isServer) {
-      config.node = {fs: 'empty'};
-    }
-
+    //if (!isServer) {
+      //config.node = {fs: 'empty'};
+    //}
+    config.resolve.fallback = { fs: false };
 
     return config;
+  },
+  experimental: {
+      // This is experimental but can
+      // be enabled to allow parallel threads
+      // with nextjs automatic static generation
+      workerThreads: false,
+      cpus: 1
   },
 };

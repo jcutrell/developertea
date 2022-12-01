@@ -12,7 +12,7 @@ const Footer = styled.footer`
   margin: 2rem 0 auto;
 `;
 
-const PLink = styled.a`
+const PLink = styled(Link)`
   color: ${props => {
     return props.active ? 'white' : null;
   }};
@@ -48,7 +48,7 @@ export default function EpisodeIndex({episodes}) {
   return (
     <div>
       <Head>
-        . <title>Developer Tea :: All Episodes</title>
+        <title>Developer Tea :: All Episodes</title>
         <link rel="icon" href="/favicon.ico" />
         <style>{chimpForm}</style>
       </Head>
@@ -72,9 +72,9 @@ export default function EpisodeIndex({episodes}) {
             </p>
             <p tw={'col-span-12'}>
               {new Array(pageCount).fill(0).map((_, i) => (
-                <Link href={`/episodes?p=${i + 1}`} passHref>
-                  <PLink active={p == i + 1}>{i + 1}</PLink>
-                </Link>
+                <PLink active={p == i + 1} href={`/episodes?p=${i + 1}`} passHref key={`plink-${i}`}>
+                  {i + 1}
+                </PLink>
               ))}
             </p>
           </Footer>
@@ -101,6 +101,7 @@ export default function EpisodeIndex({episodes}) {
           {episodes.collection.map(ep => (
             <EpisodeCard
               episode={ep}
+              key={ep.id}
               tw={
                 'shadow-lg m-3 mb-12 text-gray-600 transition hover:text-gray-900 hover:shadow-xl align-middle rounded-lg'
               }
@@ -113,8 +114,6 @@ export default function EpisodeIndex({episodes}) {
 }
 
 export async function getServerSideProps(context) {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
   const p = context?.query?.p || 1;
   const res = await fetch(
     `https://api.simplecast.com/podcasts/${
