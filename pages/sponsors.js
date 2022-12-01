@@ -40,7 +40,7 @@ export default function Home({ sponsors }) {
                 over 13 million unique listens since the first episode aired in
                 January 2015.
                 <a
-                  tw="inline-block text-center border border-brandBlue-600 bg-brandBlue-800 text-white rounded-md px-4 py-2 my-6 transition duration-500 ease select-none focus:outline-none hover:text-white hover:bg-brandBlue-600"
+                  tw="inline-block text-center border border-brandBlue-600 bg-brandBlue-800 text-white rounded-md px-4 py-2 my-6 transition duration-500 ease-in-out select-none focus:outline-none hover:text-white hover:bg-brandBlue-600"
                   href="/contact"
                 >
                   Learn About Becoming a Sponsor

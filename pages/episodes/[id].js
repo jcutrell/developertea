@@ -74,7 +74,7 @@ export async function getStaticProps(context) {
   const episode = await res.json();
 
   //const regex = /(<([^>]+)>)/ig;
-  const result = episode.long_description.replace(/h2/gi, "H2special");
+  const result = (episode.long_description || episode.description || "<div />").replace(/h2/gi, "H2special");
 
 
   episode.mdxSource = await serialize(result, { parseFrontmatter: false });

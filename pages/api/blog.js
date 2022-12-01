@@ -2,8 +2,9 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import { DateTime } from 'luxon';
-import remark from 'remark'
-import html from 'remark-html'
+import {unified} from 'unified'
+import remarkParse from 'remark-parse'
+import remarkHtml from 'remark-html'
 
 const postsDirectory = join(process.cwd(), 'blog')
 
@@ -52,6 +53,6 @@ export function getAllPosts(fields = []) {
 }
 
 export async function markdownToHtml(markdown) {
-	const result = await remark().use(html).process(markdown)
+	const result = await unified().use(remarkParse).use(remarkHtml).process(markdown)
 	return result.toString()
 }
