@@ -10,9 +10,9 @@ export default function Home({ sponsors }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="text-2xl font-bold">Developer Tea Sponsors</h1>
-        <section className="sponsors vp-md-top-5 vp-md-bottom-5">
-          <div className="container">
+        <h1 tw="text-2xl font-bold">Developer Tea Sponsors</h1>
+        <section className="sponsors" tw="md:pt-5 md:pb-5">
+          <div tw="container">
             <div tw="grid grid-cols-9">
               <p tw="my-5 col-span-6">
                 The sponsors of Developer Tea make this show happen, but even
@@ -21,7 +21,7 @@ export default function Home({ sponsors }) {
               </p>
             </div>
             <div className="row sponsor-row">
-              <h2 className="text-xl font-medium mt-8">2021 Sponsors</h2>
+              <h2 tw="text-xl font-medium mt-8">2021 Sponsors</h2>
               <div tw="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 my-4">
                 {sponsors.map((sponsor) => (
                   <>
@@ -34,17 +34,19 @@ export default function Home({ sponsors }) {
               </div>
             </div>
             <div tw="grid grid-cols-12">
-              <h2 className="text-xl font-medium col-span-12 mb-4 mt-10">Interested in being a sponsor?</h2>
+              <h2 tw={"text-xl font-medium col-span-12 mb-4 mt-10"}>Interested in being a sponsor?</h2>
               <div tw="col-span-6 text-sm">
                 Developer Tea has over 10k regular listeners and has accumulated
                 over 13 million unique listens since the first episode aired in
                 January 2015.
+                <div>
                 <a
                   tw="inline-block text-center border border-brandBlue-600 bg-brandBlue-800 text-white rounded-md px-4 py-2 my-6 transition duration-500 ease-in-out select-none focus:outline-none hover:text-white hover:bg-brandBlue-600"
                   href="/contact"
                 >
                   Learn About Becoming a Sponsor
                 </a>
+                </div>
               </div>
             </div>
           </div>

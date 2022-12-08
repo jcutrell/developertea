@@ -22,9 +22,7 @@ export default function BlogPostCard({post, ...rest}) {
   const {dispatch, state} = globalState;
   return (
     <div {...rest} tw={'relative text-left items-center'}>
-      <Link href={`/blog/${post.slug}`} passHref>
-        <a
-          tw={'h-full w-full block p-8 flex flex-col justify-center text-left'}>
+      <Link href={`/blog/${post.slug}`} passHref tw={'h-full w-full block p-8 flex flex-col justify-center text-left'}>
           <span tw={'mb-4 font-bold'}>{post.title}</span>
           <div>
             <Excerpt post={post} />
@@ -32,7 +30,6 @@ export default function BlogPostCard({post, ...rest}) {
           <span tw={'text-sm text-gray-400'}>
             Published: {DateTime.fromISO(post.date).toLocaleString()}
           </span>
-        </a>
       </Link>
     </div>
   );
