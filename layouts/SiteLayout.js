@@ -37,6 +37,10 @@ const iconStyles = css`
     ${tw`rounded-md`}
   }
 
+  .ais-Hits-item {
+    list-style: none;
+  }
+
   .ais-SearchBox-form {
     position: relative;
   }
@@ -188,10 +192,11 @@ function SiteLayout({ children }) {
       <aside className="footer-cta" tw="pt-4">
         <div tw="md:grid-cols-12">
           <div tw="md:col-span-4 md:col-start-4 text-center pb-4">
-              Developer Tea was a part of <a href="http://spec.fm">Spec</a> and
-              is hosted by{" "}
-              <a href="https://twitter.com/jcutrell">Jonathan Cutrell</a>,
-              engineering manager at <a href="https://guildeducation.com">Guild Education</a>.
+            Developer Tea was a part of <a href="http://spec.fm">Spec</a> and is
+            hosted by{" "}
+            <a href="https://twitter.com/jcutrell">Jonathan Cutrell</a>,
+            engineering manager at{" "}
+            <a href="https://guildeducation.com">Guild Education</a>.
           </div>
         </div>
       </aside>
