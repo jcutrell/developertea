@@ -22,9 +22,19 @@ export async function getServerSideProps(context) {
   );
   const episodes = await res.json();
 
+  // Filter out scheduled episodes (episodes with published_at in the future)
+  const now = new Date();
+  const filteredEpisodes = {
+    ...episodes,
+    collection: episodes.collection.filter(episode => {
+      const publishedAt = new Date(episode.published_at);
+      return publishedAt <= now;
+    })
+  };
+
   return {
     props: {
-      episodes,
+      episodes: filteredEpisodes,
     },
   };
 }

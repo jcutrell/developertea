@@ -196,7 +196,7 @@ function SiteLayout({ children }) {
             hosted by{" "}
             <a href="https://twitter.com/jcutrell">Jonathan Cutrell</a>,
             engineering manager at{" "}
-            <a href="https://guildeducation.com">Guild Education</a>.
+            <a href="https://www.getgarner.com">Garner</a>.
           </div>
         </div>
       </aside>

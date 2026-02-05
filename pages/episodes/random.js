@@ -37,17 +37,40 @@ export async function getStaticProps(context) {
     }
   })
   const eps = await res.json()
-  const pick = Math.floor(Math.random() * eps.count);
 
-  const pickres = await fetch(`https://api.simplecast.com/podcasts/${process.env.PODCAST_ID}/episodes?limit=1&offset=${pick}`, {
-    headers: {
-      'authorization': `Bearer ${process.env.SIMPLECAST_API_KEY}`
+  // Keep trying to find a published episode (not scheduled)
+  const now = new Date();
+  let episode = null;
+  let attempts = 0;
+  const maxAttempts = 10;
+
+  while (!episode && attempts < maxAttempts) {
+    const pick = Math.floor(Math.random() * eps.count);
+    const pickres = await fetch(`https://api.simplecast.com/podcasts/${process.env.PODCAST_ID}/episodes?limit=1&offset=${pick}`, {
+      headers: {
+        'authorization': `Bearer ${process.env.SIMPLECAST_API_KEY}`
+      }
+    })
+    const episodes = await pickres.json();
+    const candidate = episodes.collection[0];
+    const publishedAt = new Date(candidate.published_at);
+
+    if (publishedAt <= now) {
+      episode = candidate;
     }
-  })
+    attempts++;
+  }
 
-  const episodes = await pickres.json();
-
-  const episode = episodes.collection[0];
+  // Fallback to first episode if no published episode found
+  if (!episode) {
+    const pickres = await fetch(`https://api.simplecast.com/podcasts/${process.env.PODCAST_ID}/episodes?limit=1&offset=0`, {
+      headers: {
+        'authorization': `Bearer ${process.env.SIMPLECAST_API_KEY}`
+      }
+    })
+    const episodes = await pickres.json();
+    episode = episodes.collection[0];
+  }
 
   return {
     props: {

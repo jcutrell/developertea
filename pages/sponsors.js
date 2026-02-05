@@ -21,15 +21,13 @@ export default function Home({ sponsors }) {
               </p>
             </div>
             <div className="row sponsor-row">
-              <h2 tw="text-xl font-medium mt-8">2021 Sponsors</h2>
+              <h2 tw="text-xl font-medium mt-8">2026 Sponsors</h2>
               <div tw="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 my-4">
                 {sponsors.map((sponsor) => (
-                  <>
-                    <a name={sponsor.name} target="_blank" href={sponsor.link} tw="mr-8 opacity-80 hover:opacity-100">
-                      <div style={{backgroundImage: `url(${sponsor.img_url})`}} tw="inline-block w-full bg-contain h-40 bg-no-repeat bg-center"></div>
-                      <span>{sponsor.blurb}</span>
-                    </a>
-                  </>
+                  <a key={sponsor.name} name={sponsor.name} target="_blank" href={sponsor.link} tw="mr-8 opacity-80 hover:opacity-100">
+                    <div style={{backgroundImage: `url(${sponsor.img_url})`}} tw="inline-block w-full bg-contain h-40 bg-no-repeat bg-center"></div>
+                    <span>{sponsor.blurb}</span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -61,36 +59,20 @@ export async function getServerSideProps(context) {
   // You can use any data fetching library
   //
   const sponsors = [
- //   {
-      //name: "Linode",
-      //blurb: "",
-      //link: "https://linode.com/developertea",
-      //img_url:
-        //"https://upload.wikimedia.org/wikipedia/en/thumb/2/26/Official_Linode_logo.svg/1200px-Official_Linode_logo.svg.png",
-    //},
     {
-      name: "Square",
+      name: "Unblocked",
       blurb: "",
-      link: "/square",
+      link: "http://getunblocked.com/developertea",
       img_url:
-        "/images/sponsors/square.png",
+        "/images/sponsors/unblocked.svg",
     },
     {
-      name: "Listen Notes",
+      name: "SerpApi",
       blurb: "",
-      link: "https://listennotes.com/",
+      link: "https://serpapi.com?utm_source=developer_tea",
       img_url:
-        "/images/sponsors/listennotes.svg",
+        "/images/sponsors/serpapi.png",
     },
-   {
-      name: "Red Hat Developer",
-      blurb: "",
-      link: "https://bs.serving-sys.com/Serving/adServer.bs?cn=trd&pli=1076150644&gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_68}&adid=1082320778&ord=[timestamp]",
-      img_url:
-        "/images/sponsors/redhat.svg",
-    },
-
- 
   ];
 
   return {

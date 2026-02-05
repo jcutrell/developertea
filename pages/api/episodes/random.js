@@ -25,7 +25,16 @@ export default async function(req, res){
 
     const episode = episodes.collection[0];
 
-    res.statusCode = 200
-    res.json({ episode })
+    // Check if episode is scheduled (published_at in the future)
+    const now = new Date();
+    const publishedAt = new Date(episode.published_at);
+
+    if (publishedAt > now) {
+      res.statusCode = 500
+      res.json({ error: "Episode is scheduled for future release." })
+    } else {
+      res.statusCode = 200
+      res.json({ episode })
+    }
   }
 }
