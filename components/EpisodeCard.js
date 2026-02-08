@@ -64,7 +64,9 @@ export default function EpisodeCard({ episode, ...rest }) {
         </svg>
         Load in Player
       </button>
-      <Link href={episode.enclosure_url}>&darr; Download this Episode</Link>
+      <Link href={episode.enclosure_url || ""}>
+        &darr; Download this Episode
+      </Link>
     </div>
   );
 }

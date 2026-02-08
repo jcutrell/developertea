@@ -118,8 +118,11 @@ function SiteLayout({ children }) {
             <a tw="px-2 py-1" href="https://bit.ly/DevTeaOniTunes">
               iTunes
             </a>
-            <a tw="px-2 py-1" href="/blog">
-              Blog
+            <a tw="px-2 py-1" href="https://open.spotify.com/show/02fM1JHpt9HmHGp482K71b" target="_blank" rel="noopener noreferrer">
+              Spotify
+            </a>
+            <a tw="px-2 py-1" href="https://www.youtube.com/@developertea" target="_blank" rel="noopener noreferrer">
+              YouTube
             </a>
             <a tw="px-2 py-1" href="/">
               Episodes

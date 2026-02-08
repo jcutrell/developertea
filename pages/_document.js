@@ -3,11 +3,6 @@ import { ServerStyleSheet } from 'styled-components'
 
 
 class MyDocument extends Document {
-	static async getInitialProps(ctx) {
-		const initialProps = await Document.getInitialProps(ctx)
-		return { ...initialProps }
-	}
-
 	render() {
 		return (
 			<Html>
@@ -20,7 +15,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
             integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           />
         </Head>
 				<body>
