@@ -15,7 +15,7 @@ export default function Home() {
                 <div tw="sm:col-span-8 sm:col-start-2 lg:col-span-6 lg:col-start-3">
                     <h1 tw={"text-4xl mb-3"}>Contact Me (Jonathan).</h1>
                     <p>I'd love to meet you, or hear what you have to say. Got an idea for the show? Want to grab a coffee? Drop me a line here. This will come directly to me.</p>
-                    <form action="//formspree.io/developertea@gmail.com" method="POST">
+                    <form action="https://formspree.io/f/developertea@gmail.com" method="POST">
                         <div tw="py-2">
                           <input type="text" name="name" placeholder="Name" tw={"rounded-md"} /> 
                         </div>
