@@ -1,11 +1,9 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import tw, { styled, css } from "twin.macro";
+import tw, { styled } from "twin.macro";
 import EpisodeCard from "../../components/EpisodeCard";
 import Link from "next/link";
 import colors from "tailwindcss/colors";
-import Mailchimp from "react-mailchimp-form";
-
 const PAGESIZE = 20;
 
 const Footer = styled.footer`
@@ -27,19 +25,6 @@ const PLink = styled(Link)`
   }
 `;
 
-const chimpForm = css`
-  .mailchimp-form input {
-    ${tw`px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none  w-full`}
-  }
-  .mailchimp-form button {
-    ${tw`mt-3 bg-brandBlue-600 text-white px-3 py-2 rounded-md text-sm`}
-  }
-
-  .mailchimp-form button:hover {
-    ${tw`bg-brandBlue-800`}
-  }
-`;
-
 export default function EpisodeIndex({ episodes }) {
   const router = useRouter();
   const { id, p = 1 } = router.query;
@@ -50,7 +35,6 @@ export default function EpisodeIndex({ episodes }) {
       <Head>
         <title>Developer Tea :: All Episodes</title>
         <link rel="icon" href="/favicon.ico" />
-        <style>{chimpForm}</style>
       </Head>
       <main tw={"md:grid grid-cols-12 container mx-auto"}>
         All Episodes:
