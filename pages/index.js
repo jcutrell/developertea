@@ -26,7 +26,7 @@ export async function getServerSideProps(context) {
   const now = new Date();
   const filteredEpisodes = {
     ...episodes,
-    collection: episodes.collection.filter(episode => {
+    collection: (episodes.collection || []).filter(episode => {
       const publishedAt = new Date(episode.published_at);
       return publishedAt <= now;
     })
