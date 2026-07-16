@@ -89,11 +89,18 @@ export async function getStaticProps(context) {
   });
   const episode = await res.json();
 
+  // MDX parses as JSX, so HTML void elements (e.g. <br>) must be self-closing
+  // or serialize() throws "Unexpected closing tag" / "expected corresponding
+  // closing tag" errors. Simplecast descriptions include bare <br> tags.
+  const selfCloseVoidElements = (html) =>
+    html.replace(
+      /(<(?:br|img|hr|input|meta|link|area|base|col|embed|param|source|track|wbr)\b[^>]*?)\s*\/?>/gi,
+      "$1 />"
+    );
+
   //const regex = /(<([^>]+)>)/ig;
-  const result = (
-    episode.long_description ||
-    episode.description ||
-    "<div />"
+  const result = selfCloseVoidElements(
+    episode.long_description || episode.description || "<div />"
   ).replace(/h2/gi, "H2special");
 
   episode.mdxSource = await serialize(result, { parseFrontmatter: false });
